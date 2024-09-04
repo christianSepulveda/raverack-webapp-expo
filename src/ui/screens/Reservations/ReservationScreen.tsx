@@ -6,17 +6,25 @@ import IonIcons from "react-native-vector-icons/Ionicons";
 import DateSelectionStep from "../../components/DateSelectionStep";
 import TableSizeList from "../../components/TableSizeList";
 import CustomerDataStep from "../../components/CustomerDataStep";
+import Customer from "../../../domian/Entities/Customer";
+import Error from "../../../domian/Entities/Error";
+import { Card } from "react-native-paper";
 
 type Props = {
   date: Date;
   hour: string;
-  tableCapacity: string;
   step: number;
-  setHour: (hour: string) => void;
-  setDate: (date: Date) => void;
-  setTableCapacity: (tableCapacity: string) => void;
+  tableCapacity: string;
+  error: Error | undefined;
+  customer: Customer;
+
   nextStep: () => void;
   prevStep: () => void;
+
+  setHour: (hour: string) => void;
+  setDate: (date: Date) => void;
+  setCustomer: (customer: Customer) => void;
+  setTableCapacity: (tableCapacity: string) => void;
 };
 
 const ReservationScreen = (props: Props) => {
@@ -35,6 +43,22 @@ const ReservationScreen = (props: Props) => {
         alignSelf: "center",
       }}
     >
+      {props.error && props.error.error && (
+        <Animatable.View animation={"fadeInDown"}>
+          <Card
+            style={{
+              backgroundColor: COLORS.red,
+              padding: 10,
+              marginBottom: 30,
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
+              {props.error.message}
+            </Text>
+          </Card>
+        </Animatable.View>
+      )}
+
       {props.step === 1 && (
         <DateSelectionStep
           date={props.date}
@@ -55,7 +79,12 @@ const ReservationScreen = (props: Props) => {
       )}
 
       {props.step === 3 && (
-        <CustomerDataStep prevStep={props.prevStep} nextStep={props.nextStep} />
+        <CustomerDataStep
+          prevStep={props.prevStep}
+          nextStep={props.nextStep}
+          customer={props.customer}
+          setCustomer={props.setCustomer}
+        />
       )}
 
       {props.step === 4 && (

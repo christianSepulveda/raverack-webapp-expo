@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from "react-native-animatable";
 import React, { useRef, useState } from "react";
 import { DatePickerInput, TimePickerModal } from "react-native-paper-dates";
 import COLORS from "../../styles/colors";
@@ -37,6 +37,12 @@ const DateSelectionStep = (props: Props) => {
           onChange={(d) => props.setDate(d ?? new Date())}
           inputMode="start"
           mode="outlined"
+          iconColor="white"
+          iconStyle={{
+            backgroundColor: COLORS.purple,
+            borderRadius: 100,
+            alignSelf: "center",
+          }}
           contentStyle={{ color: COLORS.purple }}
           withModal={true}
           theme={{

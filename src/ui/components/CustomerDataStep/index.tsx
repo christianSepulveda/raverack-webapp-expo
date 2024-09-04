@@ -4,10 +4,13 @@ import React from "react";
 import COLORS from "../../styles/colors";
 import { TextInput } from "react-native-paper";
 import RaveRackButton from "../RaveRackButton";
+import Customer from "../../../domian/Entities/Customer";
 
 type Props = {
   prevStep: () => void;
   nextStep: () => void;
+  customer: Customer;
+  setCustomer: (customer: Customer) => void;
 };
 
 const CustomerDataStep = (props: Props) => {
@@ -26,8 +29,10 @@ const CustomerDataStep = (props: Props) => {
         <View style={{ marginVertical: 16 }} />
         <TextInput
           label="Nombre Completo"
-          value={""}
-          onChangeText={() => {}}
+          value={props.customer.fullname ?? ""}
+          onChangeText={(text) =>
+            props.setCustomer({ ...props.customer, fullname: text })
+          }
           mode="outlined"
           inputMode="text"
           contentStyle={{ color: COLORS.purple }}
@@ -42,8 +47,11 @@ const CustomerDataStep = (props: Props) => {
         <View style={{ marginVertical: 8 }} />
         <TextInput
           label="RUT (Sin puntos ni guión)"
-          value={""}
-          onChangeText={() => {}}
+          value={props.customer.rut ?? ""}
+          onChangeText={(text) =>
+            props.setCustomer({ ...props.customer, rut: text })
+          }
+          maxLength={9}
           mode="outlined"
           inputMode="numeric"
           contentStyle={{ color: COLORS.purple }}
@@ -58,8 +66,10 @@ const CustomerDataStep = (props: Props) => {
         <View style={{ marginVertical: 8 }} />
         <TextInput
           label="Número de Teléfono"
-          value={""}
-          onChangeText={() => {}}
+          value={props.customer.phone ?? ""}
+          onChangeText={(text) =>
+            props.setCustomer({ ...props.customer, phone: text })
+          }
           mode="outlined"
           inputMode="tel"
           contentStyle={{ color: COLORS.purple }}
@@ -74,8 +84,10 @@ const CustomerDataStep = (props: Props) => {
         <View style={{ marginVertical: 8 }} />
         <TextInput
           label="Correo Electrónico"
-          value={""}
-          onChangeText={() => {}}
+          value={props.customer.email ?? ""}
+          onChangeText={(text) =>
+            props.setCustomer({ ...props.customer, email: text })
+          }
           mode="outlined"
           inputMode="email"
           contentStyle={{ color: COLORS.purple }}
