@@ -4,7 +4,7 @@ import React from "react";
 import COLORS from "../../styles/colors";
 import { TextInput } from "react-native-paper";
 import RaveRackButton from "../RaveRackButton";
-import Customer from "../../../domian/Entities/Customer";
+import Customer from "../../../domian/entities/Customer";
 
 type Props = {
   prevStep: () => void;

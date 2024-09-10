@@ -6,8 +6,8 @@ import IonIcons from "react-native-vector-icons/Ionicons";
 import DateSelectionStep from "../../components/DateSelectionStep";
 import TableSizeList from "../../components/TableSizeList";
 import CustomerDataStep from "../../components/CustomerDataStep";
-import Customer from "../../../domian/Entities/Customer";
-import Error from "../../../domian/Entities/Error";
+import { Customer } from "../../../domian/entities/Customer";
+import { Error } from "../../../domian/entities/Error";
 import { Card } from "react-native-paper";
 
 type Props = {
@@ -25,6 +25,7 @@ type Props = {
   setDate: (date: Date) => void;
   setCustomer: (customer: Customer) => void;
   setTableCapacity: (tableCapacity: string) => void;
+  createReservation: () => void;
 };
 
 const ReservationScreen = (props: Props) => {
@@ -81,7 +82,7 @@ const ReservationScreen = (props: Props) => {
       {props.step === 3 && (
         <CustomerDataStep
           prevStep={props.prevStep}
-          nextStep={props.nextStep}
+          nextStep={props.createReservation}
           customer={props.customer}
           setCustomer={props.setCustomer}
         />

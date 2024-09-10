@@ -1,4 +1,5 @@
-export default interface Error {
+export interface Error {
   message: string;
   error: boolean;
+  status?: number;
 }
