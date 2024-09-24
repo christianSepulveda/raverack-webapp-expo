@@ -6,9 +6,9 @@ const makeFetch = async (
   body?: any
 ): Promise<any> => {
   try {
-    const server = process.env.SERVER || "localhost:3000";
-    const url = `http://${server}/${endpoint}`;
-    //const url = "https://raverack-api-nodejs.onrender.com/" + endpoint;
+    const server = process.env.SERVER || "192.168.1.70:3000";
+    //const url = `http://${server}/${endpoint}`;
+    const url = "https://raverack-api-nodejs.onrender.com/" + endpoint;
 
     const configuration = {
       headers: {
